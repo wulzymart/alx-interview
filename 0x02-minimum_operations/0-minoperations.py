@@ -18,4 +18,6 @@ def minOperations(n):
             grouped_move += move_count
             n //= move_count
         move_count += 1
+    if move_count > root:
+        return n
     return grouped_move
