@@ -8,6 +8,8 @@ to result in exactly n H characters in the file."""
 
 def minOperations(n):
     """Gets minimum operations needed to copy and have 'n' 'H'"""
+    if n < 2:
+        return 0
     grouped_move = 0
     move_count = 2
     root = n ** 0.5
