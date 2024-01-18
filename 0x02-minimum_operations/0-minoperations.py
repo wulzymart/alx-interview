@@ -12,12 +12,11 @@ def minOperations(n):
         return 0
     grouped_move = 0
     move_count = 2
-    root = n ** 0.5
-    while (move_count <= root):
+    n_copy = n
+    # root = n ** 0.5
+    while (move_count <= n_copy):
         while (n % move_count == 0):
             grouped_move += move_count
             n //= move_count
         move_count += 1
-    if move_count > root:
-        return n
     return grouped_move
