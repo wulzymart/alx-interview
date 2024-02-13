@@ -5,18 +5,23 @@
  */
 
 const request = require('request');
+const { promisify } = require('util');
 const id = process.argv[2];
 const url = 'https://swapi-api.alx-tools.com/api/films/' + id;
 
-request.get(url, (err, res, body) => {
+request.get(url, async (err, res, body) => {
   if (err) console.log(err);
   else {
     const characters = JSON.parse(body).characters;
+    const req = promisify(request.get);
     for (const url of characters) {
-      request.get(url, (err, res, body) => {
-        if (err) console.log(err);
-        else console.log(JSON.parse(body).name);
-      });
+      await req(url)
+        .then((res) => {
+          console.log(JSON.parse(res.body).name);
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   }
 });
