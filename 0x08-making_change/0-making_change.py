@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 """Make changes module"""
 
-import math
-
 
 def makeChange(coins, total):
     """get minimum number of coins to make amount"""
