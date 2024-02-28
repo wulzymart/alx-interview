@@ -5,12 +5,19 @@
 def makeChange(coins, total):
     """get minimum number of coins to make amount"""
     # using dynamic programing
-    default = total + 1
-    dp = [default] * (default)
-    dp[0] = 0
+    if total <= 0:
+        return 0
+    count = 0
+    i = 0
 
-    for a in range(1, default):
-        for c in coins:
-            if a - c >= 0:
-                dp[a] = min(dp[a], 1 + dp[a - c])
-    return dp[total] if dp[total] != default else -1
+    coins.sort(reverse=True)
+    n = len(coins)
+    while total > 0:
+        if i >= n:
+            return -1
+        if total - coins[i] >= 0:
+            total -= coins[i]
+            count += 1
+        else:
+            i += 1
+    return count
